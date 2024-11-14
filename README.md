@@ -44,6 +44,11 @@ CLI tool that uploads the energy consumption and maximum power usage data from t
 
     ```bash
     docker run --rm --init --tty --interactive --read-only --cap-drop ALL --security-opt no-new-privileges:true --cpus 2 -m 64m --pids-limit 16 --volume ./datadis_exporter.json:/app/datadis_exporter.json:ro ghcr.io/rare-magma/datadis-exporter:latest
+
+    docker run --rm -it --user root --entrypoint /bin/sh \
+--privileged \
+--volume /app/datadis_exporter.json:/config/datadis_exporter.json:ro \
+datadis-exporter:debug
     ```
 
 ### With the Makefile
